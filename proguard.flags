@@ -14,6 +14,12 @@
   <init>(...);
 }
 
+# The photo editor (filtershow) instantiates filters, editors and UI controls
+# via Java reflection (BaseFiltersManager.init / EditorFactory / ParametricEditor).
+-keep class com.android.gallery3d.filtershow.** {
+  <init>(...);
+}
+
 # ctors of subclasses of ActivityState are called with Java reflection.
 -keep class * extends com.android.gallery3d.app.ActivityState {
   <init>(...);
