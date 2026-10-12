@@ -25,6 +25,13 @@
   <init>(...);
 }
 
+# ImageFilter subclasses are instantiated with Java reflection in
+# BaseFiltersManager.init(); without this R8 strips their ctors and marks the
+# classes abstract, so setFilterResources NPEs when the filter is missing.
+-keep class * extends com.android.gallery3d.filtershow.filters.ImageFilter {
+  <init>(...);
+}
+
 -keep class com.android.camera.CameraActivity {
   public boolean isRecording();
   public long getAutoFocusTime();
